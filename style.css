@@ -1,0 +1,2398 @@
+:root {
+  --cream: #f4eee6;
+  --cream-dark: #ebe0d1;
+  --paper: #fbfaf7;
+  --white: #ffffff;
+  --ink: #2b241e;
+  --muted: #756b61;
+  --wood: #765239;
+  --wood-light: #a27d5b;
+  --line: #ddd4c8;
+  --serif: Georgia, "Times New Roman", serif;
+  --sans: Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.6;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* HEADER */
+
+.site-header {
+  position: absolute;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 22px 5vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/*
+  Das Original-Logo wird direkt verwendet.
+  mix-blend-mode: multiply blendet den weißen Hintergrund
+  auf der hellen Seite optisch aus.
+*/
+.brand img,
+.footer-logo img {
+  width: 62px;
+  height: 62px;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+.site-header nav {
+  display: flex;
+  gap: 30px;
+}
+
+.site-header nav a {
+  font-size: 12px;
+  transition: color .25s ease;
+}
+
+.site-header nav a:hover {
+  color: var(--wood);
+}
+
+.nav-button {
+  padding: 10px 18px;
+  border: 1px solid var(--ink);
+  font-size: 11px;
+}
+
+/* TYPOGRAFIE */
+
+.eyebrow {
+  margin-bottom: 18px;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+}
+
+h1,
+h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  line-height: .98;
+}
+
+h1 em,
+h2 em {
+  color: var(--wood);
+  font-style: italic;
+}
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+  padding: 15px 22px;
+  background: var(--wood);
+  color: white;
+  font-size: 11px;
+  letter-spacing: .08em;
+  transition: .25s ease;
+}
+
+.button:hover {
+  background: var(--wood-light);
+  transform: translateY(-2px);
+}
+
+/* HERO */
+
+.hero {
+  min-height: 100vh;
+  padding: 120px 5vw 60px;
+  display: grid;
+  grid-template-columns: .85fr 1.15fr;
+  gap: 5vw;
+  align-items: center;
+  background: var(--cream);
+}
+
+.hero-copy {
+  max-width: 650px;
+}
+
+.hero h1 {
+  font-size: clamp(65px, 7vw, 110px);
+  letter-spacing: -5px;
+}
+
+.hero-text {
+  max-width: 510px;
+  margin: 30px 0;
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.85;
+}
+
+.hero-art {
+  height: 76vh;
+  min-height: 560px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Vollständiges Bild – kein Cropping */
+.hero-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* INTRO */
+
+.intro {
+  padding: 140px 10%;
+  text-align: center;
+}
+
+.intro h2 {
+  font-size: clamp(50px, 5.5vw, 82px);
+}
+
+.intro > p:last-child {
+  max-width: 640px;
+  margin: 30px auto 0;
+  color: var(--muted);
+  line-height: 1.9;
+}
+
+/* KUNSTSTÜCKE */
+
+.works {
+  padding: 110px 5vw 125px;
+  background: var(--white);
+}
+
+.section-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 50px;
+}
+
+.section-title h2 {
+  font-size: clamp(50px, 5vw, 76px);
+}
+
+.section-note {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.art-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.art-card {
+  height: 360px;
+  margin: 0;
+  padding: 18px;
+  background: #f6f2ec;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Kunstwerke vollständig darstellen */
+.art-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform .5s ease;
+}
+
+.art-card:hover img {
+  transform: scale(1.025);
+}
+
+/* URNEN */
+
+/* Fünf Urnen werden in der letzten Reihe mittig angeordnet,
+   ohne die Kartengröße zu verändern. */
+@media (min-width: 901px) {
+  .urn-grid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+
+  .urn-grid .urn-card {
+    grid-column: span 2;
+  }
+
+  .urn-grid .urn-card:nth-last-child(2) {
+    grid-column: 2 / span 2;
+  }
+
+  .urn-grid .urn-card:last-child {
+    grid-column: 4 / span 2;
+  }
+}
+
+@media (min-width: 561px) and (max-width: 900px) {
+  .urn-grid .urn-card:last-child {
+    grid-column: 1 / -1;
+    width: calc((100% - 18px) / 2);
+    justify-self: center;
+  }
+}
+
+/* HÖLZER */
+
+.wood-section {
+  min-height: 700px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--cream);
+}
+
+.wood-copy {
+  padding: 100px 10vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.wood-copy h2 {
+  font-size: clamp(52px, 5.3vw, 82px);
+}
+
+.wood-copy > p:last-child {
+  max-width: 520px;
+  margin-top: 32px;
+  color: var(--muted);
+  line-height: 1.9;
+}
+
+.wood-art {
+  min-height: 600px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.wood-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ÜBER MICH */
+
+.about {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--white);
+}
+
+.about-photo {
+  min-height: 700px;
+  background: #292724;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.about-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.about-copy {
+  padding: 100px 10%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.about-copy h2 {
+  font-size: clamp(60px, 6vw, 92px);
+}
+
+.about-text {
+  max-width: 520px;
+  margin-top: 30px;
+  color: var(--muted);
+}
+
+.about-text p {
+  margin-bottom: 16px;
+}
+
+.about-text strong {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+/* WERKSTATT */
+
+.workshop {
+  padding: 120px 5vw;
+  background: var(--cream-dark);
+}
+
+.workshop-heading {
+  max-width: 760px;
+  margin: auto auto 60px;
+  text-align: center;
+}
+
+.workshop-heading h2 {
+  font-size: clamp(55px, 6vw, 88px);
+}
+
+.workshop-heading > p:last-child {
+  margin-top: 25px;
+  color: var(--muted);
+}
+
+.workshop-grid {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.workshop-placeholder {
+  height: 350px;
+  border: 1px dashed #b9aa9b;
+  background: rgba(255,255,255,.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+}
+
+.workshop-placeholder span {
+  font-family: var(--serif);
+  font-size: 42px;
+  color: var(--wood);
+}
+
+.workshop-placeholder p {
+  margin-top: 10px;
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+/* KONTAKT */
+
+.contact {
+  padding: 125px 7vw;
+  background: var(--paper);
+}
+
+.contact-heading {
+  max-width: 720px;
+  margin: auto;
+  text-align: center;
+}
+
+.contact-heading h2 {
+  font-size: clamp(55px, 6vw, 88px);
+}
+
+.contact-heading > p:last-child {
+  max-width: 600px;
+  margin: 28px auto 0;
+  color: var(--muted);
+}
+
+.contact-layout {
+  max-width: 1200px;
+  margin: 75px auto 0;
+  display: grid;
+  grid-template-columns: .75fr 1.25fr;
+  gap: 60px;
+  align-items: stretch;
+}
+
+.contact-details {
+  border-top: 1px solid var(--line);
+}
+
+.detail {
+  padding: 25px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.detail span {
+  color: var(--muted);
+  font-size: 9px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+}
+
+.detail p {
+  margin-top: 8px;
+  font-size: 14px;
+}
+
+.detail a:hover {
+  color: var(--wood);
+}
+
+.map {
+  min-height: 470px;
+  overflow: hidden;
+  background: #e8e0d6;
+}
+
+.map iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 470px;
+  border: 0;
+}
+
+/* FOOTER */
+
+footer {
+  padding: 35px 5vw;
+  background: #e9e0d5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+footer p {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+
+  .site-header nav,
+  .nav-button {
+    display: none;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 115px 7vw 55px;
+  }
+
+  .hero-art {
+    height: 55vh;
+    min-height: 420px;
+  }
+
+  .section-title {
+    display: block;
+  }
+
+  .section-note {
+    margin-top: 15px;
+  }
+
+  .art-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .wood-section,
+  .about {
+    grid-template-columns: 1fr;
+  }
+
+  .wood-art {
+    min-height: 480px;
+  }
+
+  .about-photo {
+    min-height: 540px;
+  }
+
+  .workshop-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .contact-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+
+  .site-header {
+    padding: 18px 20px;
+  }
+
+  .brand img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .hero h1 {
+    font-size: 58px;
+  }
+
+  .hero-art {
+    min-height: 350px;
+  }
+
+  .intro,
+  .works,
+  .contact,
+  .workshop {
+    padding-top: 85px;
+    padding-bottom: 85px;
+  }
+
+  .art-grid,
+  .workshop-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .art-card {
+    height: 330px;
+  }
+
+  .wood-copy,
+  .about-copy {
+    padding: 75px 8vw;
+  }
+
+  .about-photo {
+    min-height: 450px;
+  }
+
+  .contact-layout {
+    margin-top: 50px;
+  }
+
+  footer {
+    flex-direction: column;
+    gap: 18px;
+    text-align: center;
+  }
+}
+
+
+
+
+/* v7 – größere Darstellung ohne Bild-Cropping */
+
+/* Original-Logo größer */
+.brand img {
+  width: 88px;
+  height: 88px;
+}
+
+/* Hero-Bild: Seitenverhältnis des Originals bleibt erhalten */
+.hero-art {
+  height: auto;
+  min-height: 0;
+  overflow: visible;
+}
+
+.hero-art img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+/* Märkte – eigenständiger, symmetrischer Bereich */
+.markets {
+  padding: 125px 5vw;
+  background: var(--cream);
+}
+
+.markets-heading {
+  max-width: 760px;
+  margin: 0 auto 58px;
+  text-align: center;
+}
+
+.markets-heading h2 {
+  font-size: clamp(52px, 5.5vw, 82px);
+}
+
+.markets-heading > p:last-child {
+  max-width: 620px;
+  margin: 28px auto 0;
+  color: var(--muted);
+  line-height: 1.9;
+}
+
+.market-grid {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+  align-items: stretch;
+}
+
+.market-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  box-shadow: 0 12px 35px rgba(70, 48, 31, .05);
+}
+
+.market-card-image {
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.market-image-craft {
+  background:
+    linear-gradient(135deg, rgba(118,82,57,.94), rgba(162,125,91,.78));
+}
+
+.market-image-autumn {
+  background:
+    linear-gradient(135deg, rgba(94,68,45,.96), rgba(170,126,78,.76));
+}
+
+.market-card-image span {
+  color: rgba(255,255,255,.9);
+  font-family: var(--serif);
+  font-size: 42px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.market-card-content {
+  padding: 34px 36px 38px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.market-date {
+  color: var(--wood);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  margin-bottom: 12px;
+}
+
+.market-card h3 {
+  font-family: var(--serif);
+  font-size: 31px;
+  font-weight: 400;
+  line-height: 1.1;
+  margin-bottom: 8px;
+}
+
+.market-location {
+  color: var(--muted);
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+
+.market-card-content > p:not(.market-date):not(.market-location) {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.market-link {
+  margin-top: auto;
+  padding-top: 28px;
+  color: var(--wood);
+  font-size: 15px;
+  font-weight: 700;
+  border-top: 1px solid var(--line);
+  margin-top: 30px;
+}
+
+.market-link span {
+  margin-left: 8px;
+}
+
+@media (max-width: 900px) {
+  .brand img {
+    width: 76px;
+    height: 76px;
+  }
+
+  .hero-art {
+    height: auto;
+    min-height: 0;
+  }
+
+  .hero-art img {
+    height: auto;
+  }
+
+  .market-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .brand img {
+    width: 64px;
+    height: 64px;
+  }
+
+  .markets {
+    padding: 85px 7vw;
+  }
+
+  .market-card-image {
+    height: 190px;
+  }
+
+  .market-card-content {
+    padding: 27px 25px 30px;
+  }
+
+  .market-card h3 {
+    font-size: 27px;
+  }
+}
+
+
+/* v8 – neues Original-Logo oben links, Seitenverhältnis unverändert */
+.site-header .brand {
+  display: flex;
+  align-items: center;
+  width: 150px;
+  flex: 0 0 150px;
+}
+
+.site-header .brand img {
+  width: 150px !important;
+  height: auto !important;
+  max-height: none !important;
+  object-fit: contain;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .site-header .brand {
+    width: 115px;
+    flex-basis: 115px;
+  }
+
+  .site-header .brand img {
+    width: 115px !important;
+    height: auto !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .site-header .brand {
+    width: 90px;
+    flex-basis: 90px;
+  }
+
+  .site-header .brand img {
+    width: 90px !important;
+    height: auto !important;
+  }
+}
+
+
+/* v9 – Logo im Hero über der Schrift, nicht mehr in der Navigationszeile */
+.site-header .brand {
+  display: none !important;
+}
+
+.site-header nav {
+  margin-left: auto;
+}
+
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hero-logo {
+  width: min(155px, 30vw);
+  margin-bottom: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+@media (max-width: 900px) {
+  .hero-logo {
+    width: 135px;
+    margin-bottom: 28px;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero-logo {
+    width: 105px;
+    margin-bottom: 24px;
+  }
+}
+
+
+/* v10 – Hero sauber auf einen Bildschirm abgestimmt */
+
+/* Navigation wirklich mittig im oberen Bereich */
+.site-header {
+  height: 76px;
+  padding: 14px 5vw;
+  justify-content: flex-end;
+}
+
+.site-header nav {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  gap: 26px;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.site-header nav a {
+  font-size: 13px;
+}
+
+.nav-button {
+  flex: 0 0 auto;
+}
+
+/* Startbereich: alles innerhalb des sichtbaren Bildschirms */
+.hero {
+  height: 100vh;
+  min-height: 0;
+  padding: 92px 5vw 34px;
+  grid-template-columns: .9fr 1.1fr;
+  gap: 4vw;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-copy {
+  max-width: 610px;
+  justify-content: center;
+}
+
+/* Neues transparentes Logo: groß, aber mit sauberem Rand */
+.hero-logo {
+  width: 185px;
+  max-width: 32vw;
+  margin-bottom: 25px;
+}
+
+.hero h1 {
+  font-size: clamp(60px, 6.4vw, 96px);
+  letter-spacing: -4px;
+}
+
+.hero-text {
+  margin: 24px 0;
+  font-size: 16px;
+  line-height: 1.72;
+  max-width: 490px;
+}
+
+/* Bild etwas kleiner als zuvor, vollständig sichtbar */
+.hero-art {
+  width: 100%;
+  height: auto;
+  max-height: calc(100vh - 126px);
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-art img {
+  width: 100%;
+  height: auto;
+  max-height: calc(100vh - 126px);
+  object-fit: contain;
+}
+
+/* Auf kleineren Bildschirmen bleibt die Navigation sauber */
+@media (max-width: 1100px) {
+  .site-header nav {
+    gap: 18px;
+  }
+
+  .site-header nav a {
+    font-size: 12px;
+  }
+
+  .nav-button {
+    padding: 8px 13px;
+    font-size: 10px;
+  }
+
+  .hero {
+    gap: 3vw;
+  }
+
+  .hero-logo {
+    width: 160px;
+  }
+}
+
+@media (max-width: 900px) {
+  .site-header {
+    height: 70px;
+    justify-content: center;
+  }
+
+  .site-header nav {
+    position: static;
+    transform: none;
+    flex-wrap: wrap;
+    gap: 12px 18px;
+  }
+
+  .nav-button {
+    display: none;
+  }
+
+  .hero {
+    height: auto;
+    min-height: calc(100vh - 70px);
+    padding: 88px 7vw 55px;
+    overflow: visible;
+  }
+
+  .hero-art,
+  .hero-art img {
+    max-height: none;
+  }
+
+  .hero-logo {
+    width: 145px;
+    max-width: 42vw;
+  }
+}
+
+@media (max-width: 560px) {
+  .site-header nav {
+    gap: 8px 12px;
+  }
+
+  .site-header nav a {
+    font-size: 11px;
+  }
+
+  .hero {
+    padding-top: 85px;
+  }
+
+  .hero-logo {
+    width: 120px;
+    margin-bottom: 20px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE OPTIMIERUNG
+   PC/DESKTOP BLEIBT UNVERÄNDERT
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  /* ---------- HEADER ---------- */
+
+  .site-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: auto;
+    min-height: 70px;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .site-header nav {
+    position: static;
+    transform: none;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    margin: 0;
+  }
+
+  .site-header nav a {
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  .nav-button {
+    display: none;
+  }
+
+
+  /* ---------- HERO ---------- */
+
+  .hero {
+    min-height: 100vh;
+    height: auto;
+    padding: 105px 25px 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-copy {
+    width: 100%;
+    max-width: 600px;
+    align-items: center;
+  }
+
+  .hero-logo {
+    width: 135px;
+    max-width: 45vw;
+    margin-bottom: 22px;
+  }
+
+  .hero h1 {
+    font-size: clamp(52px, 13vw, 76px);
+    letter-spacing: -3px;
+  }
+
+  .hero-text {
+    max-width: 520px;
+    margin: 22px auto;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .button {
+    padding: 14px 20px;
+    font-size: 10px;
+  }
+
+  .hero-art {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    min-height: 0;
+    overflow: visible;
+  }
+
+  .hero-art img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+
+  /* ---------- INTRO ---------- */
+
+  .intro {
+    padding: 90px 25px;
+  }
+
+  .intro h2 {
+    font-size: clamp(48px, 12vw, 70px);
+  }
+
+  .intro > p:last-child {
+    max-width: 540px;
+    margin-top: 25px;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+
+  /* ---------- KUNSTSTÜCKE ---------- */
+
+  .works {
+    padding: 85px 20px;
+  }
+
+  .section-title {
+    display: block;
+    text-align: center;
+    margin-bottom: 35px;
+  }
+
+  .section-title h2 {
+    font-size: clamp(45px, 11vw, 68px);
+  }
+
+  .section-note {
+    margin-top: 15px;
+    font-size: 12px;
+  }
+
+  .art-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .art-card {
+    width: 100%;
+    height: auto;
+    min-height: 330px;
+    padding: 12px;
+  }
+
+  .art-card img {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: contain;
+  }
+
+
+  /* ---------- URNEN ---------- */
+
+  .urn-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .urn-grid .urn-card,
+  .urn-grid .urn-card:nth-last-child(2),
+  .urn-grid .urn-card:last-child {
+    grid-column: auto;
+    width: 100%;
+    justify-self: stretch;
+  }
+
+  .urn-card {
+    min-height: 380px;
+  }
+
+  .urn-card img {
+    max-height: 520px;
+  }
+
+
+  /* ---------- HÖLZER ---------- */
+
+  .wood-section {
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .wood-copy {
+    padding: 80px 25px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .wood-copy h2 {
+    font-size: clamp(48px, 11vw, 72px);
+  }
+
+  .wood-copy > p:last-child {
+    max-width: 540px;
+    margin-top: 25px;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .wood-art {
+    min-height: 400px;
+    padding: 20px;
+  }
+
+  .wood-art img {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: contain;
+  }
+
+
+  /* ---------- ÜBER MICH ---------- */
+
+  .about {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .about-photo {
+    min-height: 0;
+    height: auto;
+    padding: 0;
+  }
+
+  .about-photo img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .about-copy {
+    padding: 75px 25px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .about-copy h2 {
+    font-size: clamp(55px, 13vw, 82px);
+  }
+
+  .about-text {
+    max-width: 540px;
+    margin-top: 25px;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+
+  /* ---------- MÄRKTE ---------- */
+
+  .markets {
+    padding: 85px 20px;
+  }
+
+  .markets-heading {
+    margin-bottom: 40px;
+  }
+
+  .markets-heading h2 {
+    font-size: clamp(48px, 11vw, 72px);
+  }
+
+  .markets-heading > p:last-child {
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .market-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .market-card-image {
+    height: 190px;
+  }
+
+  .market-card-image span {
+    font-size: 32px;
+  }
+
+  .market-card-content {
+    padding: 27px 23px 30px;
+  }
+
+  .market-card h3 {
+    font-size: 27px;
+  }
+
+
+  /* ---------- WERKSTATT ---------- */
+
+  .workshop {
+    padding: 85px 20px;
+  }
+
+  .workshop-heading {
+    margin-bottom: 40px;
+  }
+
+  .workshop-heading h2 {
+    font-size: clamp(48px, 11vw, 72px);
+  }
+
+  .workshop-grid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+
+  .workshop-placeholder {
+    height: 280px;
+  }
+
+
+  /* ---------- KONTAKT ---------- */
+
+  .contact {
+    padding: 85px 25px;
+  }
+
+  .contact-heading h2 {
+    font-size: clamp(50px, 12vw, 76px);
+  }
+
+  .contact-heading > p:last-child {
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin-top: 50px;
+  }
+
+  .detail {
+    padding: 22px 0;
+  }
+
+  .detail p {
+    font-size: 14px;
+  }
+
+  .map {
+    min-height: 350px;
+  }
+
+  .map iframe {
+    min-height: 350px;
+  }
+
+
+  /* ---------- FOOTER ---------- */
+
+  footer {
+    padding: 30px 20px;
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+}
+
+
+/* =========================================================
+   KLEINE HANDYS
+   ========================================================= */
+
+@media (max-width: 560px) {
+
+  .site-header {
+    padding: 12px 15px;
+  }
+
+  .site-header nav {
+    gap: 7px 11px;
+  }
+
+  .site-header nav a {
+    font-size: 10px;
+  }
+
+
+  .hero {
+    padding: 95px 18px 40px;
+    gap: 25px;
+  }
+
+  .hero-logo {
+    width: 110px;
+    margin-bottom: 18px;
+  }
+
+  .hero h1 {
+    font-size: 54px;
+    letter-spacing: -2px;
+  }
+
+  .hero-text {
+    font-size: 14px;
+    line-height: 1.65;
+  }
+
+  .button {
+    padding: 13px 17px;
+    gap: 15px;
+  }
+
+
+  .intro {
+    padding: 75px 20px;
+  }
+
+  .intro h2 {
+    font-size: 48px;
+  }
+
+
+  .works,
+  .markets,
+  .workshop,
+  .contact {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+
+  .section-title h2,
+  .markets-heading h2,
+  .workshop-heading h2 {
+    font-size: 48px;
+  }
+
+
+  .art-card {
+    min-height: 300px;
+    padding: 10px;
+  }
+
+  .urn-card {
+    min-height: 340px;
+  }
+
+
+  .wood-copy,
+  .about-copy {
+    padding: 65px 20px;
+  }
+
+  .wood-copy h2,
+  .about-copy h2 {
+    font-size: 52px;
+  }
+
+
+  .wood-art {
+    min-height: 330px;
+    padding: 15px;
+  }
+
+
+  .about-photo img {
+    width: 100%;
+  }
+
+
+  .market-card-content {
+    padding: 24px 20px 27px;
+  }
+
+  .market-card h3 {
+    font-size: 25px;
+  }
+
+
+  .contact-heading h2 {
+    font-size: 52px;
+  }
+
+  .map,
+  .map iframe {
+    min-height: 300px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE V2 – iPHONE FEINSCHLIFF
+   Desktop/PC bleibt unverändert.
+   Diese Regeln greifen ausschließlich unter 900px.
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  /* ---------- ALLGEMEIN ---------- */
+
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  /* ---------- MOBILE NAVIGATION ---------- */
+
+  .site-header {
+    position: absolute;
+    z-index: 20;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 62px;
+    box-sizing: border-box;
+    padding: 14px 14px 10px;
+  }
+
+  .site-header nav {
+    width: 100%;
+    max-width: 100%;
+    gap: 8px 14px;
+    justify-content: center;
+  }
+
+  .site-header nav a {
+    font-size: 10.5px;
+    line-height: 1.25;
+  }
+
+
+  /* ---------- STARTSEITE / HERO ---------- */
+
+  .hero {
+    min-height: auto;
+    height: auto;
+    box-sizing: border-box;
+    padding: 105px 24px 48px;
+    gap: 34px;
+  }
+
+  .hero-copy {
+    width: 100%;
+    max-width: 680px;
+  }
+
+  /*
+     Logo und Hauptschriftzug nebeneinander.
+     Der Schriftzug bleibt dabei mehrzeilig, damit er auf
+     einem iPhone nicht zu klein werden muss.
+  */
+  .hero-copy {
+    display: grid;
+    grid-template-columns: 88px minmax(0, 1fr);
+    column-gap: 20px;
+    align-items: center;
+    text-align: left;
+  }
+
+  .hero-copy .hero-logo {
+    grid-column: 1;
+    grid-row: 1 / span 3;
+    width: 78px;
+    max-width: 78px;
+    margin: 0 auto;
+  }
+
+  .hero-copy h1 {
+    grid-column: 2;
+    margin: 0;
+    text-align: left;
+    font-size: clamp(48px, 12.5vw, 72px);
+    line-height: .9;
+    letter-spacing: -2.5px;
+  }
+
+  .hero-copy .hero-text {
+    grid-column: 1 / -1;
+    margin: 28px 0 0;
+    text-align: center;
+    max-width: 620px;
+    justify-self: center;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  .hero-copy .button {
+    grid-column: 1 / -1;
+    justify-self: center;
+    margin-top: 2px;
+  }
+
+  .hero-art {
+    width: 100%;
+    max-width: 720px;
+    min-height: 0;
+  }
+
+  .hero-art img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+
+  /* ---------- EINLEITUNG ---------- */
+
+  .intro {
+    padding: 76px 24px;
+  }
+
+  .intro h2 {
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: clamp(45px, 11vw, 66px);
+    line-height: .95;
+  }
+
+  .intro > p:last-child {
+    max-width: 590px;
+    margin: 24px auto 0;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+
+  /* ---------- SECTION HEADINGS ---------- */
+
+  .section-title,
+  .markets-heading,
+  .workshop-heading,
+  .contact-heading {
+    text-align: center;
+  }
+
+  .section-title h2,
+  .markets-heading h2,
+  .workshop-heading h2,
+  .contact-heading h2 {
+    line-height: .94;
+  }
+
+
+  /* ---------- KUNSTSTÜCKE: 2 SPALTEN ---------- */
+
+  .works {
+    padding: 78px 16px 85px;
+  }
+
+  .section-title {
+    margin-bottom: 34px;
+  }
+
+  .section-title h2 {
+    font-size: clamp(43px, 10.8vw, 64px);
+  }
+
+  .art-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    width: 100%;
+  }
+
+  .art-card {
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    height: auto;
+    box-sizing: border-box;
+    padding: 8px;
+  }
+
+  .art-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+  }
+
+
+  /* Falls einzelne Kunstkarten über alte Grid-Regeln
+     positioniert wurden, werden diese auf mobil normalisiert. */
+  .art-grid .art-card,
+  .art-grid .art-card:nth-child(n) {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+
+  /* ---------- URNEN ---------- */
+
+  .urn-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    width: 100%;
+  }
+
+  .urn-grid .urn-card,
+  .urn-grid .urn-card:nth-last-child(2),
+  .urn-grid .urn-card:last-child {
+    grid-column: auto;
+    width: 100%;
+    min-width: 0;
+    justify-self: stretch;
+  }
+
+  .urn-card {
+    min-height: 0;
+    height: auto;
+    box-sizing: border-box;
+    padding: 8px;
+  }
+
+  .urn-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+  }
+
+
+  /* ---------- HOLZ ---------- */
+
+  .wood-section {
+    min-height: 0;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .wood-copy {
+    padding: 70px 24px 62px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .wood-copy h2 {
+    font-size: clamp(46px, 11vw, 68px);
+    line-height: .94;
+  }
+
+  .wood-copy > p:last-child {
+    max-width: 580px;
+    margin: 24px auto 0;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .wood-art {
+    min-height: 0;
+    height: auto;
+    padding: 16px;
+  }
+
+  .wood-art img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: none;
+    object-fit: contain;
+  }
+
+
+  /* ---------- ÜBER MICH ---------- */
+
+  .about {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .about-photo {
+    width: 100%;
+    min-height: 0;
+    height: auto;
+    padding: 0;
+  }
+
+  .about-photo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .about-copy {
+    padding: 68px 24px;
+    text-align: center;
+    align-items: center;
+  }
+
+  .about-copy h2 {
+    font-size: clamp(50px, 12vw, 74px);
+    line-height: .94;
+  }
+
+  .about-text {
+    max-width: 580px;
+    margin: 24px auto 0;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+
+  /* ---------- MÄRKTE ---------- */
+
+  .markets {
+    padding: 76px 16px 82px;
+  }
+
+  .markets-heading {
+    margin-bottom: 34px;
+  }
+
+  .markets-heading h2 {
+    font-size: clamp(45px, 11vw, 68px);
+  }
+
+  .markets-heading > p:last-child {
+    max-width: 580px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .market-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .market-card-image {
+    height: 180px;
+  }
+
+  .market-card-content {
+    padding: 24px 20px 27px;
+  }
+
+  .market-card h3 {
+    font-size: 25px;
+  }
+
+
+  /* ---------- DRECHSELWERKSTATT ---------- */
+
+  .workshop {
+    padding: 76px 16px 82px;
+  }
+
+  .workshop-heading {
+    margin-bottom: 34px;
+  }
+
+  .workshop-heading h2 {
+    font-size: clamp(45px, 11vw, 68px);
+  }
+
+  .workshop-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .workshop-placeholder {
+    width: 100%;
+    height: 250px;
+  }
+
+
+  /* ---------- KONTAKT ---------- */
+
+  .contact {
+    padding: 76px 24px;
+  }
+
+  .contact-heading h2 {
+    font-size: clamp(48px, 11.5vw, 72px);
+  }
+
+  .contact-heading > p:last-child {
+    max-width: 580px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .contact-layout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-top: 42px;
+  }
+
+  .detail {
+    padding: 18px 0;
+  }
+
+  .detail p {
+    font-size: 14px;
+  }
+
+  .map,
+  .map iframe {
+    width: 100%;
+    min-height: 300px;
+  }
+
+
+  /* ---------- FOOTER ---------- */
+
+  footer {
+    box-sizing: border-box;
+    padding: 26px 20px;
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+}
+
+
+/* =========================================================
+   SEHR KLEINE IPHONES
+   ========================================================= */
+
+@media (max-width: 560px) {
+
+  .site-header {
+    padding: 12px 12px 8px;
+  }
+
+  .site-header nav {
+    gap: 7px 11px;
+  }
+
+  .site-header nav a {
+    font-size: 10px;
+  }
+
+
+  .hero {
+    padding: 96px 18px 40px;
+    gap: 28px;
+  }
+
+  .hero-copy {
+    grid-template-columns: 66px minmax(0, 1fr);
+    column-gap: 13px;
+  }
+
+  .hero-copy .hero-logo {
+    width: 58px;
+    max-width: 58px;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(42px, 11.5vw, 58px);
+    letter-spacing: -2px;
+  }
+
+  .hero-copy .hero-text {
+    margin-top: 25px;
+    font-size: 13.5px;
+  }
+
+
+  .intro {
+    padding: 68px 20px;
+  }
+
+  .intro h2 {
+    font-size: 46px;
+  }
+
+
+  .works,
+  .markets,
+  .workshop {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .section-title h2,
+  .markets-heading h2,
+  .workshop-heading h2 {
+    font-size: 45px;
+  }
+
+  .art-grid,
+  .urn-grid {
+    gap: 10px;
+  }
+
+  .art-card,
+  .urn-card {
+    padding: 6px;
+  }
+
+
+  .wood-copy,
+  .about-copy {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .wood-copy {
+    padding-top: 62px;
+    padding-bottom: 55px;
+  }
+
+  .wood-copy h2,
+  .about-copy h2 {
+    font-size: 49px;
+  }
+
+  .wood-art {
+    padding: 12px;
+  }
+
+
+  .about-copy {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+
+
+  .contact {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .contact-heading h2 {
+    font-size: 49px;
+  }
+
+  .map,
+  .map iframe {
+    min-height: 280px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE V3 – KUNSTWERKE GRÖSSER + STARTSEITE VEREINFACHT
+   Desktop/PC bleibt unverändert.
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  /* Kunstwerke etwas größer:
+     weniger Außenabstand und dadurch mehr verfügbare Breite. */
+  .works {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .art-grid {
+    gap: 10px;
+  }
+
+  .art-card {
+    padding: 5px;
+  }
+
+  /* Startseite: Bild direkt unter "Holz mit Charakter".
+     Der bisherige Beschreibungstext und der Button werden
+     auf Mobil ausgeblendet. */
+  .hero-copy .hero-text,
+  .hero-copy .button {
+    display: none;
+  }
+
+  .hero {
+    padding-bottom: 24px;
+    gap: 24px;
+  }
+
+  .hero-copy {
+    display: block;
+    text-align: center;
+  }
+
+  /* Logo bleibt links neben dem Schriftzug. */
+  .hero-copy .hero-logo {
+    float: left;
+    width: 64px;
+    max-width: 64px;
+    margin: 8px 14px 0 0;
+  }
+
+  .hero-copy h1 {
+    display: block;
+    text-align: left;
+    font-size: clamp(44px, 11.5vw, 68px);
+    line-height: .91;
+    letter-spacing: -2px;
+    margin: 0;
+  }
+
+  .hero-art {
+    margin-top: 0;
+    width: 100%;
+  }
+
+  .hero-art img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+}
+
+
+@media (max-width: 560px) {
+
+  .works {
+    padding-left: 9px;
+    padding-right: 9px;
+  }
+
+  .art-grid {
+    gap: 9px;
+  }
+
+  .art-card {
+    padding: 4px;
+  }
+
+  .hero {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 92px;
+    padding-bottom: 18px;
+    gap: 20px;
+  }
+
+  .hero-copy .hero-logo {
+    width: 55px;
+    max-width: 55px;
+    margin-right: 11px;
+    margin-top: 7px;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(40px, 11vw, 56px);
+    line-height: .92;
+  }
+}
+
+
+/* =========================================================
+   MOBILE V4 – NAVIGATION AUSBLENDEN + LOGO ZENTRIERT ZUM TITEL
+   Desktop/PC bleibt unverändert.
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .site-header nav,
+  .site-header .nav-button {
+    display: none !important;
+  }
+
+  .site-header {
+    min-height: 0;
+    height: 0;
+    padding: 0;
+  }
+
+  .hero-copy {
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1fr);
+    column-gap: 14px;
+    align-items: center;
+  }
+
+  .hero-copy .eyebrow {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    text-align: center;
+    margin: 0 0 18px;
+  }
+
+  .hero-copy .hero-logo {
+    grid-column: 1;
+    grid-row: 2;
+    align-self: center;
+    justify-self: center;
+    float: none;
+    width: 58px;
+    max-width: 58px;
+    margin: 0;
+  }
+
+  .hero-copy h1 {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: center;
+    margin: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero {
+    padding-top: 78px;
+  }
+
+  .hero-copy {
+    grid-template-columns: 62px minmax(0, 1fr);
+    column-gap: 10px;
+  }
+
+  .hero-copy .hero-logo {
+    width: 54px;
+    max-width: 54px;
+  }
+
+  .hero-copy .eyebrow {
+    margin-bottom: 16px;
+  }
+}
+
+/* =========================================================
+   MOBILE V3 – PORTRÄT UNTER „MARTIN SCHÜTZMEIER“ + STARTSEITE
+   Desktop/PC bleibt unverändert.
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  /* Startseite: weniger Abstand zum oberen Rand */
+  .hero {
+    padding-top: 62px;
+  }
+
+  /* Im Bereich „Über mich“ zuerst Text/Name, danach Porträt */
+  .about-copy {
+    order: 1;
+  }
+
+  .about-photo {
+    order: 2;
+  }
+}
+
+@media (max-width: 560px) {
+
+  /* Auf kleinen iPhones den Startbereich noch etwas kompakter */
+  .hero {
+    padding-top: 58px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE V6 – NUR KUNSTSTÜCKE GRÖSSER / UNTEREINANDER
+   PC/Desktop bleibt vollständig unverändert.
+   URNEN BLEIBEN in 2 Spalten.
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  /* NUR der Kunststücke-Bereich: ein großes Bild pro Zeile */
+  .art-grid {
+    grid-template-columns: 1fr !important;
+    gap: 18px;
+  }
+
+  .art-card {
+    width: 100%;
+    min-width: 0;
+    min-height: 0;
+    height: auto;
+    padding: 4px;
+  }
+
+  .art-card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    max-height: none;
+    object-fit: contain;
+  }
+
+  /* URNEN ausdrücklich auf 2 Spalten lassen */
+  .urn-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 14px;
+  }
+
+  .urn-grid .urn-card,
+  .urn-grid .urn-card:nth-last-child(2),
+  .urn-grid .urn-card:last-child {
+    grid-column: auto !important;
+    width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+
+  /* Kunststücke: weiterhin nur eine Spalte und möglichst groß */
+  .art-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+
+  .art-card {
+    padding: 3px;
+  }
+
+  .art-card img {
+    width: 100%;
+    height: auto;
+    max-height: none;
+  }
+
+  /* Urnen: ausdrücklich 2 Spalten */
+  .urn-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px;
+  }
+
+  .urn-grid .urn-card {
+    width: 100%;
+    padding: 6px;
+  }
+}
+
+
+/* =========================================================
+   DESKTOP – NAVIGATION OBEN AUSBLENDEN
+   Nur die Reiter/Navigationslinks oben werden entfernt.
+   Alle anderen Desktop-Styles bleiben unverändert.
+   Die Mobile-Version bleibt ebenfalls unverändert.
+   ========================================================= */
+
+@media (min-width: 901px) {
+  .site-header nav,
+  .site-header .nav-button {
+    display: none !important;
+  }
+}
